@@ -1,4 +1,4 @@
-# frames
+# handling iframes
 
 import time
 
@@ -6,14 +6,23 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 
-driver = webdriver.Chrome()
-driver.get(url="https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_iframe_frameborder_css")
+driver = webdriver.Firefox()
+driver.get(url="https://www.tutorialspoint.com/selenium/practice/frames.php")
 
 driver.maximize_window()
-time.sleep(20)
-# driver.find_element(by=By.CLASS_NAME, value="user-anonymous tnb-signup-btn w3-bar-item w3-button w3-right ws-green ws-hover-green ga-top ga-top-signup").click()
+
+frames = driver.find_elements(by=By.TAG_NAME, value="iframe")
+
+print(len(frames))
+
+driver.switch_to.frame(0)
+
+text = driver.find_element(by=By.TAG_NAME, value="h1")
+
+print(text.text)
 
 
-driver.close()
+
+input("Press Enter to exit ...")
 
 
